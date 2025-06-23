@@ -4,18 +4,11 @@ services:
     container_name: flask-backend
     ports:
       - "5000:5000"
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/microservices_db
-      - DB_HOST=db
-      - DB_PORT=5432
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=microservices_db
+    env_file:
+      - .env
     depends_on:
       - db
     restart: always
-
-
 
   frontend:
     build: ./frontend
@@ -28,10 +21,8 @@ services:
   db:
     image: postgres:15
     container_name: postgres-db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: microservices_db
+    env_file:
+      - .env
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:

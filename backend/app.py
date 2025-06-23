@@ -4,10 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_swagger_ui import get_swaggerui_blueprint
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 # Load environment variables
-# load_dotenv()
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
